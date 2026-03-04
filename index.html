@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZARIZA MÖBEL | Мебельная и столярная мастерская</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black-primary: #0a0a0a;
+            --black-secondary: #1a1a1a;
+            --black-glass: rgba(20, 20, 20, 0.7);
+            --copper: #b87333;
+            --copper-light: #d4a574;
+            --copper-dark: #8b5a2b;
+            --text-primary: #f5f5f5;
+            --text-secondary: #b0b0b0;
+            --wood-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 Q35 20 30 30 Q25 20 30 5' stroke='%23b87333' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--black-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: var(--wood-pattern);
+        }
+
+        /* Animated wood grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(184, 115, 51, 0.03) 50px,
+                    rgba(184, 115, 51, 0.03) 51px
+                );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Glassmorphism base */
+        .glass {
+            background: var(--black-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(184, 115, 51, 0.15);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* Ornament pattern */
+        .ornament {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 Q60 30 50 40 Q40 30 50 10 M20 50 Q30 60 40 50 Q30 40 20 50 M60 50 Q70 60 80 50 Q70 40 60 50 M50 60 Q60 80 50 90 Q40 80 50 60' stroke='%23b87333' stroke-width='0.5' fill='none' opacity='0.2'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            padding: 1rem 5%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 4px;
+            position: relative;
+        }
+
+        .logo span {
+            color: var(--copper);
+            font-size: 0.9rem;
+            display: block;
+            letter-spacing: 6px;
+            margin-top: -5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--copper);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--copper-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 120px 5% 80px;
+            background: 
+                radial-gradient(ellipse at top, rgba(184, 115, 51, 0.15), transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(184, 115, 51, 0.1), transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--copper);
+            color: var(--copper-light);
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero h1 .accent {
+            color: var(--copper);
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .hero-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--copper-light);
+            font-size: 0.95rem;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.8s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            border: 1px solid var(--copper);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--copper), var(--copper-dark));
+            color: var(--text-primary);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--copper);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(184, 115, 51, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Decorative elements */
+        .wood-carving {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .wood-carving.top-right {
+            top: 10%;
+            right: 5%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 20 Q120 60 100 80 Q80 60 100 20 M40 100 Q60 120 80 100 Q60 80 40 100 M120 100 Q140 120 160 100 Q140 80 120 100 M100 120 Q120 160 100 180 Q80 160 100 120' stroke='%23b87333' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .wood-carving.bottom-left {
+            bottom: 10%;
+            left: 5%;
+            transform: rotate(180deg);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 20 Q120 60 100 80 Q80 60 100 20 M40 100 Q60 120 80 100 Q60 80 40 100 M120 100 Q140 120 160 100 Q140 80 120 100 M100 120 Q120 160 100 180 Q80 160 100 120' stroke='%23b87333' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            color: var(--copper);
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(180deg, transparent, rgba(184, 115, 51, 0.05), transparent);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--copper);
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            border-color: rgba(184, 115, 51, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            border: 1px solid var(--copper);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: linear-gradient(180deg, transparent, rgba(184, 115, 51, 0.03), transparent);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-info {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .portfolio-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-info p {
+            color: var(--copper-light);
+            font-size: 0.9rem;
+        }
+
+        /* Advantages Section */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .advantage-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 2rem;
+        }
+
+        .advantage-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--copper);
+            opacity: 0.5;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .advantage-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .advantage-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(180deg, transparent, rgba(184, 115, 51, 0.08));
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            padding-left: 3rem;
+            position: relative;
+        }
+
+        .contact-item::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--copper);
+            font-size: 1.2rem;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-item span {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--copper);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--copper);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--copper);
+            color: var(--black-primary);
+            transform: translateY(-3px);
+        }
+
+        .contact-map {
+            min-height: 400px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(184, 115, 51, 0.2);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer .logo-small {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-grid,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Copper shimmer effect */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .copper-shimmer {
+            background: linear-gradient(
+                90deg,
+                rgba(184, 115, 51, 0) 0%,
+                rgba(184, 115, 51, 0.1) 50%,
+                rgba(184, 115, 51, 0) 100%
+            );
+            background-size: 1000px 100%;
+            animation: shimmer 8s infinite linear;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">
+                ZARIZA
+                <span>MÖBEL</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">О мастерской</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#portfolio">Портфолио</a></li>
+                <li><a href="#advantages">Преимущества</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="wood-carving top-right"></div>
+        <div class="wood-carving bottom-left"></div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">МЕБЕЛЬНАЯ И СТОЛЯРНАЯ МАСТЕРСКАЯ</div>
+            <h1>
+                Создаём мебель
+                <span class="accent">премиум класса</span>
+                из натурального дерева
+            </h1>
+            <p class="hero-subtitle">
+                Индивидуальные решения для бизнеса и частных клиентов. 
+                Работаем по всей России и миру.
+            </p>
+            <div class="hero-location">
+                <span>📍</span>
+                <span>Волжский, Волгоградская область</span>
+            </div>
+            <div class="cta-buttons">
+                <a href="https://t.me/zarizamobel" target="_blank" class="btn btn-primary">Обсудить проект</a>
+                <a href="#portfolio" class="btn btn-secondary">Наши работы</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text fade-in">
+                    <span class="section-tag">О НАС</span>
+                    <h2 class="section-title">Собственное производство полного цикла</h2>
+                    <p>
+                        ZARIZA MÖBEL — это команда опытных мастеров, создающих уникальную мебель 
+                        и интерьерные решения из массива дерева, шпона и других премиальных материалов.
+                    </p>
+                    <p>
+                        Мы работаем как с готовыми дизайн-проектами, так и помогаем разработать 
+                        концепцию с нуля. Любой стиль, любая сложность — от классики до современных 
+                        авторских решений с резными орнаментами и медной патиной.
+                    </p>
+                    <p>
+                        Используем только надёжную проверенную фурнитуру и современные технологии 
+                        обработки древесины.
+                    </p>
+                </div>
+                <div class="about-stats fade-in">
+                    <div class="stat-card glass">
+                        <span class="stat-number">10+</span>
+                        <div class="stat-label">Лет опыта</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <span class="stat-number">500+</span>
+                        <div class="stat-label">Реализованных проектов</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <span class="stat-number">100%</span>
+                        <div class="stat-label">Индивидуальный подход</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <span class="stat-number">РФ</span>
+                        <div class="stat-label">Работаем по всей стране</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">УСЛУГИ</span>
+                <h2 class="section-title">Что мы производим</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card glass fade-in">
+                    <div class="service-icon">🛋️</div>
+                    <h3>Мягкая мебель</h3>
+                    <p>Диваны, кресла, пуфы с деревянными элементами. Индивидуальная обивка и наполнение.</p>
+                </div>
+                <div class="service-card glass fade-in">
+                    <div class="service-icon">🪑</div>
+                    <h3>Мебель из массива</h3>
+                    <p>Столы, стулья, шкафы, кровати из ценных пород дерева с обработкой под заказ.</p>
+                </div>
+                <div class="service-card glass fade-in">
+                    <div class="service-icon">🌳</div>
+                    <h3>Изделия из шпона</h3>
+                    <p>Фанерованные поверхности, панели, декоративные элементы с натуральным шпоном.</p>
+                </div>
+                <div class="service-card glass fade-in">
+                    <div class="service-icon">🏛️</div>
+                    <h3>Интерьерные элементы</h3>
+                    <p>Резные панели, карнизы, багеты, декоративные балки с орнаментами.</p>
+                </div>
+                <div class="service-card glass fade-in">
+                    <div class="service-icon">✨</div>
+                    <h3>Медная патина</h3>
+                    <p>Частичное омеднение деревянных изделий с эффектом старины и патины.</p>
+                </div>
+                <div class="service-card glass fade-in">
+                    <div class="service-icon">🏢</div>
+                    <h3>Мебель для бизнеса</h3>
+                    <p>Оснащение ресторанов, отелей, салонов красоты, офисов и торговых пространств.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">ПОРТФОЛИО</span>
+                <h2 class="section-title">Наши работы</h2>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item fade-in">
+                    <img src="https://i.ibb.co/7KqJvLd/photo-2025-03-05-14-30-45.jpg" alt="Резная мебель с орнаментом">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Резные стеллажи</h3>
+                            <p>Декоративные элементы с авторской резьбой</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="https://i.ibb.co/8XqKvLd/photo-2025-03-05-14-30-46.jpg" alt="Столярная мастерская">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Производство</h3>
+                            <p>Собственная мастерская полного цикла</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="https://i.ibb.co/9XqKvLd/photo-2025-03-05-14-30-47.jpg" alt="Обеденная зона">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Обеденная группа</h3>
+                            <p>Массив дерева, интерьер ресторана</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="https://i.ibb.co/0XqKvLd/photo-2025-03-05-14-30-48.jpg" alt="Модульная мягкая мебель">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Мягкая мебель</h3>
+                            <p>Модульные диваны для ТЦ</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="https://i.ibb.co/1XqKvLd/photo-2025-03-05-14-30-49.jpg" alt="Интерьер салона красоты">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Салон красоты</h3>
+                            <p>Рабочие места с деревянными столами</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="https://i.ibb.co/2XqKvLd/photo-2025-03-05-14-30-50.jpg" alt="Декоративные элементы">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Декор интерьера</h3>
+                            <p>Резные панели и элементы</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section id="advantages" class="advantages">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">ПОЧЕМУ МЫ</span>
+                <h2 class="section-title">Преимущества работы с нами</h2>
+            </div>
+            <div class="advantages-grid">
+                <div class="advantage-item fade-in">
+                    <div class="advantage-number">01</div>
+                    <div class="advantage-content">
+                        <h3>Собственное производство</h3>
+                        <p>Полный контроль качества на всех этапах. Никаких посредников и переплат.</p>
+                    </div>
+                </div>
+                <div class="advantage-item fade-in">
+                    <div class="advantage-number">02</div>
+                    <div class="advantage-content">
+                        <h3>Опытные мастера</h3>
+                        <p>Команда профессионалов с многолетним опытом работы с деревом.</p>
+                    </div>
+                </div>
+                <div class="advantage-item fade-in">
+                    <div class="advantage-number">03</div>
+                    <div class="advantage-content">
+                        <h3>Доступные цены</h3>
+                        <p>Честная стоимость без наценок. Гибкая система скидок.</p>
+                    </div>
+                </div>
+                <div class="advantage-item fade-in">
+                    <div class="advantage-number">04</div>
+                    <div class="advantage-content">
+                        <h3>Любая сложность</h3>
+                        <p>От простых изделий до сложных авторских проектов с резьбой.</p>
+                    </div>
+                </div>
+                <div class="advantage-item fade-in">
+                    <div class="advantage-number">05</div>
+                    <div class="advantage-content">
+                        <h3>Огромный выбор материалов</h3>
+                        <p>Работаем с различными породами дерева, шпоном, фурнитурой.</p>
+                    </div>
+                </div>
+                <div class="advantage-item fade-in">
+                    <div class="advantage-number">06</div>
+                    <div class="advantage-content">
+                        <h3>Работаем по России и миру</h3>
+                        <p>Доставка и установка в любой точке. Организация логистики.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">КОНТАКТЫ</span>
+                <h2 class="section-title">Свяжитесь с нами</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>Готовы воплотить ваши идеи в жизнь</h3>
+                    
+                    <div class="contact-item">
+                        <strong>Телефон</strong>
+                        <span><a href="tel:+79608846433" style="color: var(--text-secondary); text-decoration: none;">+7 (960) 884-64-33</a></span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <strong>Адрес мастерской</strong>
+                        <span>
+                            Улица Александрова, 68/1<br>
+                            Волжский, Волгоградская область, 404103
+                        </span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <strong>География работы</strong>
+                        <span>Волгоградская область, вся Россия, международные заказы</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>Режим работы</strong>
+                        <span>Пн-Пт: 9:00 - 18:00<br>Сб: по договорённости</span>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://vk.com/zarizamobel" target="_blank" class="social-link" title="ВКонтакте">VK</a>
+                        <a href="https://t.me/zarizamobel" target="_blank" class="social-link" title="Telegram">TG</a>
+                        <a href="https://2gis.ru/volzhsky/firm/70000001084420238" target="_blank" class="social-link" title="2ГИС">2G</a>
+                    </div>
+                </div>
+                
+                <div class="contact-map glass fade-in" style="padding: 3rem; text-align: center;">
+                    <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--copper); margin-bottom: 1rem;">📍</div>
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Мы на карте</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                        Мастерская расположена в городе Волжский.<br>
+                        Возможна встреча по предварительной записи.
+                    </p>
+                    <a href="https://2gis.ru/volzhsky/firm/70000001084420238" target="_blank" class="btn btn-primary">
+                        Открыть в 2ГИС
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo-small">ZARIZA MÖBEL</div>
+        <p>Мебельная и столярная мастерская</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">
+            © 2025 Все права защищены<br>
+            Работаем по всей России и миру
+        </p>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
