@@ -19,11 +19,10 @@
             --black-secondary: #1a1a1a;
             --glass-bg: rgba(40, 40, 40, 0.4);
             --glass-border: rgba(255, 255, 255, 0.08);
-            --accent: #8b7355;
-            --accent-light: #a08060;
+            --accent: #6b6b6b;
+            --accent-light: #8a8a8a;
             --text-primary: #f5f5f5;
             --text-secondary: #b0b0b0;
-            --wood-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 Q35 20 30 30 Q25 20 30 5' stroke='%238b7355' stroke-width='0.5' fill='none' opacity='0.05'/%3E%3C/svg%3E");
         }
 
         html {
@@ -36,9 +35,20 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: var(--wood-pattern);
+            /* Геометрический орнамент в фоне */
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 20 L60 30 L50 40 L40 30 Z M50 40 L60 50 L50 60 L40 50 Z M50 60 L60 70 L50 80 L40 70 Z M30 40 L40 50 L30 60 L20 50 Z M70 40 L80 50 L70 60 L60 50 Z' fill='%23ffffff' fill-opacity='0.02'/%3E%3C/svg%3E"),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 35px,
+                    rgba(255, 255, 255, 0.015) 35px,
+                    rgba(255, 255, 255, 0.015) 70px
+                );
+            background-attachment: fixed;
         }
 
+        /* Дополнительный слой с текстурой дерева */
         body::before {
             content: '';
             position: fixed;
@@ -51,14 +61,21 @@
                     90deg,
                     transparent,
                     transparent 50px,
-                    rgba(139, 115, 85, 0.02) 50px,
-                    rgba(139, 115, 85, 0.02) 51px
+                    rgba(100, 80, 60, 0.03) 50px,
+                    rgba(100, 80, 60, 0.03) 51px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(100, 80, 60, 0.02) 50px,
+                    rgba(100, 80, 60, 0.02) 51px
                 );
             pointer-events: none;
             z-index: -1;
         }
 
-        /* Glassmorphism base - серый полупрозрачный */
+        /* Glassmorphism base */
         .glass {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
@@ -101,11 +118,10 @@
             color: var(--text-primary);
             text-decoration: none;
             letter-spacing: 4px;
-            position: relative;
         }
 
         .logo span {
-            color: var(--accent-light);
+            color: var(--text-secondary);
             font-size: 0.9rem;
             display: block;
             letter-spacing: 6px;
@@ -135,12 +151,12 @@
             left: 0;
             width: 0;
             height: 1px;
-            background: var(--accent);
+            background: var(--text-secondary);
             transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--accent-light);
+            color: var(--text-primary);
         }
 
         .nav-links a:hover::after {
@@ -155,9 +171,6 @@
             justify-content: center;
             position: relative;
             padding: 120px 5% 80px;
-            background: 
-                radial-gradient(ellipse at top, rgba(139, 115, 85, 0.08), transparent 50%),
-                radial-gradient(ellipse at bottom, rgba(139, 115, 85, 0.05), transparent 50%);
         }
 
         .hero-content {
@@ -184,12 +197,13 @@
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
+            color: var(--text-primary);
             opacity: 0;
             animation: fadeInUp 1s ease 0.2s forwards;
         }
 
         .hero h1 .accent {
-            color: var(--accent-light);
+            color: var(--text-primary);
             display: block;
         }
 
@@ -237,12 +251,13 @@
         }
 
         .btn-primary {
-            background: rgba(139, 115, 85, 0.3);
-            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--text-secondary);
         }
 
         .btn-primary:hover {
-            background: rgba(139, 115, 85, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--text-primary);
         }
 
         .btn-secondary:hover {
@@ -267,7 +282,7 @@
         }
 
         .section-tag {
-            color: var(--accent-light);
+            color: var(--text-secondary);
             font-size: 0.9rem;
             letter-spacing: 4px;
             margin-bottom: 1rem;
@@ -279,11 +294,12 @@
             font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 600;
             margin-bottom: 1.5rem;
+            color: var(--text-primary);
         }
 
         /* About Section */
         .about {
-            background: linear-gradient(180deg, transparent, rgba(139, 115, 85, 0.03), transparent);
+            background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02), transparent);
         }
 
         .about-grid {
@@ -318,7 +334,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
-            color: var(--accent-light);
+            color: var(--text-primary);
         }
 
         .approach-card p {
@@ -348,7 +364,7 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            background: linear-gradient(90deg, transparent, var(--text-secondary), transparent);
             transform: scaleX(0);
             transition: transform 0.4s ease;
         }
@@ -371,7 +387,7 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            color: var(--accent-light);
+            color: var(--text-secondary);
         }
 
         .service-card h3 {
@@ -388,7 +404,7 @@
 
         /* Portfolio Section */
         .portfolio {
-            background: linear-gradient(180deg, transparent, rgba(139, 115, 85, 0.02), transparent);
+            background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.01), transparent);
         }
 
         .portfolio-grid {
@@ -440,10 +456,11 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
+            color: var(--text-primary);
         }
 
         .portfolio-info p {
-            color: var(--accent-light);
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
@@ -483,7 +500,7 @@
 
         /* Contact Section */
         .contact {
-            background: linear-gradient(180deg, transparent, rgba(139, 115, 85, 0.04));
+            background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02));
         }
 
         .contact-content {
@@ -496,6 +513,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 2rem;
             margin-bottom: 2rem;
+            color: var(--text-primary);
         }
 
         .contact-item {
@@ -510,7 +528,7 @@
             left: 0;
             width: 20px;
             height: 1px;
-            background: var(--accent);
+            background: var(--text-secondary);
             top: 0.7rem;
         }
 
@@ -532,7 +550,7 @@
         }
 
         .contact-item a:hover {
-            color: var(--accent-light);
+            color: var(--text-primary);
         }
 
         .social-links {
@@ -557,8 +575,8 @@
         }
 
         .social-link:hover {
-            background: rgba(139, 115, 85, 0.3);
-            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--text-secondary);
             color: var(--text-primary);
             transform: translateY(-3px);
         }
@@ -569,13 +587,43 @@
             min-height: 400px;
             border-radius: 4px;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 2rem;
+            text-align: center;
         }
 
-        .map-container iframe {
+        .map-placeholder {
             width: 100%;
             height: 100%;
-            border: none;
-            filter: grayscale(100%) invert(92%) contrast(83%);
+            background: rgba(255, 255, 255, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .map-placeholder svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .map-placeholder h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .map-placeholder p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
         }
 
         /* Footer */
@@ -622,8 +670,8 @@
         }
 
         .scroll-top:hover {
-            background: rgba(139, 115, 85, 0.3);
-            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--text-secondary);
             color: var(--text-primary);
             transform: translateY(-3px);
         }
@@ -741,7 +789,7 @@
                     <p>
                         Мы работаем как с готовыми дизайн-проектами, так и помогаем разработать 
                         концепцию с нуля. Любой стиль, любая сложность — от классики до современных 
-                        авторских решений с резными орнаментами.
+                        авторских решений.
                     </p>
                     <p>
                         Используем только надёжную проверенную фурнитуру и современные технологии 
@@ -792,7 +840,7 @@
                 <div class="service-card glass fade-in">
                     <div class="service-icon"></div>
                     <h3>Интерьерные элементы</h3>
-                    <p>Резные панели, карнизы, багеты, декоративные балки с орнаментами.</p>
+                    <p>Резные панели, карнизы, багеты, декоративные балки.</p>
                 </div>
                 <div class="service-card glass fade-in">
                     <div class="service-icon"></div>
@@ -802,7 +850,7 @@
                 <div class="service-card glass fade-in">
                     <div class="service-icon"></div>
                     <h3>Декоративная отделка</h3>
-                    <p>Художественная резьба, состаривание, патинирование, тонировка и защитные покрытия.</p>
+                    <p>Художественная резьба, состаривание, тонировка и защитные покрытия.</p>
                 </div>
             </div>
         </div>
@@ -886,7 +934,7 @@
                     <div class="advantage-number">01</div>
                     <div class="advantage-content">
                         <h3>Собственное производство</h3>
-                        <p>Полный контроль качества на всех этапах. Никаких посредников и переплат.</p>
+                        <p>Полный контроль качества на всех этапах. Никаких посредников.</p>
                     </div>
                 </div>
                 <div class="advantage-item fade-in">
@@ -899,15 +947,15 @@
                 <div class="advantage-item fade-in">
                     <div class="advantage-number">03</div>
                     <div class="advantage-content">
-                        <h3>Доступные цены</h3>
-                        <p>Честная стоимость без наценок. Гибкая система скидок.</p>
+                        <h3>Честная стоимость</h3>
+                        <p>Прозрачное ценообразование без скрытых платежей и наценок.</p>
                     </div>
                 </div>
                 <div class="advantage-item fade-in">
                     <div class="advantage-number">04</div>
                     <div class="advantage-content">
                         <h3>Любая сложность</h3>
-                        <p>От простых изделий до сложных авторских проектов с резьбой.</p>
+                        <p>От простых изделий до сложных авторских проектов.</p>
                     </div>
                 </div>
                 <div class="advantage-item fade-in">
@@ -971,7 +1019,20 @@
                 
                 <div class="fade-in">
                     <div class="map-container glass">
-                        <iframe src="https://widgets.2gis.com/widget?orgId=70000001084420238&z=15&l=0%2C0%2C0%2C0%2C0%2C0%2C0%2C0&pt=44.7929%2C48.7856%2Cm2%2344.7929%2C48.7856%2Cm2" allowfullscreen="true"></iframe>
+                        <div class="map-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <h4>Мы на карте</h4>
+                            <p>
+                                Улица Александрова, 68/1<br>
+                                Волжский, Волгоградская область
+                            </p>
+                            <a href="https://2gis.ru/volzhsky/firm/70000001084420238" target="_blank" class="btn btn-primary">
+                                Открыть в 2ГИС
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
