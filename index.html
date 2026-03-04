@@ -35,20 +35,44 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Геометрический орнамент в фоне */
+            /* Новый сложный фон с геометрическим паттерном */
             background-image: 
-                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 20 L60 30 L50 40 L40 30 Z M50 40 L60 50 L50 60 L40 50 Z M50 60 L60 70 L50 80 L40 70 Z M30 40 L40 50 L30 60 L20 50 Z M70 40 L80 50 L70 60 L60 50 Z' fill='%23ffffff' fill-opacity='0.02'/%3E%3C/svg%3E"),
+                /* Основной геометрический узор */
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                /* Диагональные линии */
                 repeating-linear-gradient(
                     45deg,
                     transparent,
                     transparent 35px,
                     rgba(255, 255, 255, 0.015) 35px,
                     rgba(255, 255, 255, 0.015) 70px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 35px,
+                    rgba(255, 255, 255, 0.015) 35px,
+                    rgba(255, 255, 255, 0.015) 70px
+                ),
+                /* Вертикальные линии для текстуры */
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(100, 90, 80, 0.04) 50px,
+                    rgba(100, 90, 80, 0.04) 51px
                 );
+            background-size: 
+                60px 60px,
+                120px 120px,
+                70px 70px,
+                70px 70px,
+                51px 51px;
             background-attachment: fixed;
         }
 
-        /* Дополнительный слой с текстурой дерева */
+        /* Дополнительный слой с эффектом глубины */
         body::before {
             content: '';
             position: fixed;
@@ -57,19 +81,40 @@
             width: 100%;
             height: 100%;
             background: 
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 50px,
-                    rgba(100, 80, 60, 0.03) 50px,
-                    rgba(100, 80, 60, 0.03) 51px
+                /* Ромбовидный паттерн */
+                linear-gradient(
+                    135deg,
+                    transparent 48%,
+                    rgba(255, 255, 255, 0.02) 49%,
+                    rgba(255, 255, 255, 0.02) 51%,
+                    transparent 52%
                 ),
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 50px,
-                    rgba(100, 80, 60, 0.02) 50px,
-                    rgba(100, 80, 60, 0.02) 51px
+                linear-gradient(
+                    -135deg,
+                    transparent 48%,
+                    rgba(255, 255, 255, 0.02) 49%,
+                    rgba(255, 255, 255, 0.02) 51%,
+                    transparent 52%
+                );
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Третий слой для объёмного эффекта */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(
+                    ellipse at center,
+                    transparent 0%,
+                    rgba(0, 0, 0, 0.4) 100%
                 );
             pointer-events: none;
             z-index: -1;
@@ -388,6 +433,36 @@
             justify-content: center;
             font-size: 1.5rem;
             color: var(--text-secondary);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        /* Подсветка квадратика при наведении */
+        .service-card:hover .service-icon {
+            border-color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+            transform: scale(1.1);
+        }
+
+        .service-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at center,
+                rgba(255, 255, 255, 0.1) 0%,
+                transparent 70%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover .service-icon::after {
+            opacity: 1;
         }
 
         .service-card h3 {
