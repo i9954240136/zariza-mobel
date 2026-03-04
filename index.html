@@ -35,12 +35,9 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Новый сложный фон с геометрическим паттерном */
             background-image: 
-                /* Основной геометрический узор */
                 radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                /* Диагональные линии */
                 repeating-linear-gradient(
                     45deg,
                     transparent,
@@ -55,7 +52,6 @@
                     rgba(255, 255, 255, 0.015) 35px,
                     rgba(255, 255, 255, 0.015) 70px
                 ),
-                /* Вертикальные линии для текстуры */
                 repeating-linear-gradient(
                     90deg,
                     transparent,
@@ -72,7 +68,6 @@
             background-attachment: fixed;
         }
 
-        /* Дополнительный слой с эффектом глубины */
         body::before {
             content: '';
             position: fixed;
@@ -81,7 +76,6 @@
             width: 100%;
             height: 100%;
             background: 
-                /* Ромбовидный паттерн */
                 linear-gradient(
                     135deg,
                     transparent 48%,
@@ -102,7 +96,6 @@
             opacity: 0.6;
         }
 
-        /* Третий слой для объёмного эффекта */
         body::after {
             content: '';
             position: fixed;
@@ -120,7 +113,6 @@
             z-index: -1;
         }
 
-        /* Glassmorphism base */
         .glass {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
@@ -131,7 +123,6 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -208,7 +199,6 @@
             width: 100%;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -310,7 +300,6 @@
             transform: translateY(-2px);
         }
 
-        /* Sections */
         section {
             padding: 100px 5%;
             position: relative;
@@ -342,7 +331,6 @@
             color: var(--text-primary);
         }
 
-        /* About Section */
         .about {
             background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02), transparent);
         }
@@ -387,7 +375,6 @@
             font-size: 0.95rem;
         }
 
-        /* Services Section */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -437,7 +424,6 @@
             position: relative;
         }
 
-        /* Подсветка квадратика при наведении */
         .service-card:hover .service-icon {
             border-color: var(--text-primary);
             background: rgba(255, 255, 255, 0.08);
@@ -477,15 +463,16 @@
             font-size: 0.95rem;
         }
 
-        /* Portfolio Section */
         .portfolio {
             background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.01), transparent);
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .portfolio-item {
@@ -539,7 +526,19 @@
             font-size: 0.9rem;
         }
 
-        /* Advantages Section */
+        .portfolio-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .portfolio-footer p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
         .advantages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -573,7 +572,6 @@
             font-size: 0.95rem;
         }
 
-        /* Contact Section */
         .contact {
             background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02));
         }
@@ -701,7 +699,6 @@
             font-size: 0.95rem;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 3rem 5%;
@@ -717,7 +714,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Scroll to top button */
         .scroll-top {
             position: fixed;
             bottom: 30px;
@@ -751,7 +747,6 @@
             transform: translateY(-3px);
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -774,7 +769,6 @@
             transform: translateY(0);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -940,7 +934,7 @@
             </div>
             <div class="portfolio-grid">
                 <div class="portfolio-item fade-in">
-                    <img src="https://i.ibb.co/7KqJvLd/photo-2025-03-05-14-30-45.jpg" alt="Резная мебель с орнаментом">
+                    <img src="images/photo1.jpg" alt="Резные стеллажи">
                     <div class="portfolio-overlay">
                         <div class="portfolio-info">
                             <h3>Резные стеллажи</h3>
@@ -949,16 +943,16 @@
                     </div>
                 </div>
                 <div class="portfolio-item fade-in">
-                    <img src="https://i.ibb.co/8XqKvLd/photo-2025-03-05-14-30-46.jpg" alt="Столярная мастерская">
+                    <img src="images/photo2.jpg" alt="Декор интерьера">
                     <div class="portfolio-overlay">
                         <div class="portfolio-info">
-                            <h3>Производство</h3>
-                            <p>Собственная мастерская полного цикла</p>
+                            <h3>Декор интерьера</h3>
+                            <p>Резные панели и элементы</p>
                         </div>
                     </div>
                 </div>
                 <div class="portfolio-item fade-in">
-                    <img src="https://i.ibb.co/9XqKvLd/photo-2025-03-05-14-30-47.jpg" alt="Обеденная зона">
+                    <img src="images/photo3.jpg" alt="Обеденная группа">
                     <div class="portfolio-overlay">
                         <div class="portfolio-info">
                             <h3>Обеденная группа</h3>
@@ -967,7 +961,7 @@
                     </div>
                 </div>
                 <div class="portfolio-item fade-in">
-                    <img src="https://i.ibb.co/0XqKvLd/photo-2025-03-05-14-30-48.jpg" alt="Модульная мягкая мебель">
+                    <img src="images/photo4.jpg" alt="Мягкая мебель">
                     <div class="portfolio-overlay">
                         <div class="portfolio-info">
                             <h3>Мягкая мебель</h3>
@@ -975,24 +969,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item fade-in">
-                    <img src="https://i.ibb.co/1XqKvLd/photo-2025-03-05-14-30-49.jpg" alt="Интерьер салона красоты">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <h3>Салон красоты</h3>
-                            <p>Рабочие места с деревянными столами</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item fade-in">
-                    <img src="https://i.ibb.co/2XqKvLd/photo-2025-03-05-14-30-50.jpg" alt="Декоративные элементы">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <h3>Декор интерьера</h3>
-                            <p>Резные панели и элементы</p>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="portfolio-footer fade-in">
+                <p>Больше фото — в наших социальных сетях</p>
             </div>
         </div>
     </section>
